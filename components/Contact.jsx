@@ -80,7 +80,7 @@ function Contact() {
       id="contact"
     >
       <p className={"sectionSubText text-ctnSecondaryDark"}>Have a project in mind or just want to connect?</p>
-      <h3 className={"sectionHeadText text-ctnPrimaryDark"}>Let's Talk</h3>
+      <h3 className={"sectionHeadText text-ctnPrimaryDark"}>Let&apos;s Talk</h3>
 
       <form
         ref={formRef}
