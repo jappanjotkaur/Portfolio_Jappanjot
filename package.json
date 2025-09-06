@@ -17,7 +17,6 @@
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@react-three/drei": "^9.122.0",
-    "three-mesh-bvh": "^0.8.0",
     "@react-three/fiber": "^8.11.1",
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^1.10.56",
@@ -39,10 +38,12 @@
     "react-parallax-tilt": "^1.7.154",
     "react-type-animation": "^3.1.0",
     "react-vertical-timeline-component": "^3.6.0",
-    "three": "^0.158.0"
+    "three": "^0.155.0",
+    "three-mesh-bvh": "^0.7.6"
   },
+  
   "overrides": {
-    "three-mesh-bvh": "^0.8.0"
+    "three-mesh-bvh": "^0.7.6"
   },
   "devDependencies": {
     "@types/ndarray": "^1.0.14",
