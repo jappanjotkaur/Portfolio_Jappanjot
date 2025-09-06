@@ -39,11 +39,14 @@
     "react-type-animation": "^3.1.0",
     "react-vertical-timeline-component": "^3.6.0",
     "three": "^0.155.0",
-    "three-mesh-bvh": "^0.7.6"
+    "three-mesh-bvh": "0.7.0"
   },
   
   "overrides": {
-    "three-mesh-bvh": "^0.7.6"
+    "three-mesh-bvh": "0.7.0",
+    "@react-three/drei": {
+      "three-mesh-bvh": "0.7.0"
+    }
   },
   "devDependencies": {
     "@types/ndarray": "^1.0.14",
