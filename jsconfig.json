@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "types": [
+      "react",
+      "prop-types",
+      "stats.js",
+      "webxr",
+      "normalize-package-data",
+      "ndarray",
+      "react-reconciler",
+      "scheduler"
+      // Do NOT include 'offscreencanvas'
+    ]
+  },
+  "exclude": ["node_modules"]
+}
