@@ -17,6 +17,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
     "@react-three/drei": "^9.122.0",
+    "three-mesh-bvh": "^0.8.0",
     "@react-three/fiber": "^8.11.1",
     "@splinetool/react-spline": "^4.1.0",
     "@splinetool/runtime": "^1.10.56",
