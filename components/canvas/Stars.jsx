@@ -1,19 +1,26 @@
-import { useRef, Suspense } from "react";
+import { useRef, Suspense, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
-
+import * as THREE from "three";
 import CanvasLoader from "../Loader";
 
 function Stars(props) {
 	const ref = useRef();
-	const sphere = new Float32Array(5000 * 3);
-	for (let i = 0; i < sphere.length; i++) {
-		sphere[i] = (Math.random() - 0.5) * 2.4;
-	}
+	
+	// Move sphere generation to useMemo to prevent recreation on every render
+	const sphere = useMemo(() => {
+		const positions = new Float32Array(5000 * 3);
+		for (let i = 0; i < positions.length; i++) {
+			positions[i] = (Math.random() - 0.5) * 2.4;
+		}
+		return positions;
+	}, []);
 
 	useFrame((state, delta) => {
-		ref.current.rotation.x -= delta / 10;
-		ref.current.rotation.y -= delta / 15;
+		if (ref.current) {
+			ref.current.rotation.x -= delta / 10;
+			ref.current.rotation.y -= delta / 15;
+		}
 	});
 
 	return (
@@ -38,6 +45,17 @@ function Stars(props) {
 }
 
 function StarsCanvas() {
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	// Prevent SSR issues by only rendering on client
+	if (!mounted) {
+		return <div className="w-full h-auto absolute inset-0 z-[-1]" />;
+	}
+
 	return (
 		<div className="w-full h-auto absolute inset-0 z-[-1]">
 			<Canvas
