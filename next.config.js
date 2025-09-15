@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    esmExternals: false,
+  },
   images: {
     domains: [
       "res.cloudinary.com",
@@ -10,11 +13,11 @@ const nextConfig = {
     ],
   },
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
+    // Existing SVG handling
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg")
     );
-
+    
     config.module.rules.push(
       // Reapply the existing rule, but only for svg imports ending in ?url
       {
@@ -30,12 +33,26 @@ const nextConfig = {
         use: ["@svgr/webpack"],
       }
     );
-
+    
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
+    // Add externals for React Three Fiber compatibility
+    config.externals.push({
+      'utf-8-validate': 'commonjs utf-8-validate',
+      'bufferutil': 'commonjs bufferutil',
+    });
+
+    // Handle Three.js and related packages
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
+    };
+
     return config;
   },
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 };
 
 module.exports = nextConfig;
