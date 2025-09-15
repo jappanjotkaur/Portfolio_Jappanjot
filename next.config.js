@@ -37,6 +37,14 @@ const nextConfig = {
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
 
+    // CRITICAL: Prevent multiple Three.js instances
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'three': require.resolve('three'),
+      '@react-three/fiber': require.resolve('@react-three/fiber'),
+      '@react-three/drei': require.resolve('@react-three/drei'),
+    };
+
     // Add externals for React Three Fiber compatibility
     config.externals.push({
       'utf-8-validate': 'commonjs utf-8-validate',
