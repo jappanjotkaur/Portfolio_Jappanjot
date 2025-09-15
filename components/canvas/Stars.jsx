@@ -1,14 +1,13 @@
 import { useRef, Suspense, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial, Preload } from "@react-three/drei";
-import * as THREE from "three";
+import { Points, PointMaterial } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 function Stars(props) {
 	const ref = useRef();
 	
-	// Move sphere generation to useMemo to prevent recreation on every render
-	const sphere = useMemo(() => {
+	// Simple star generation without complex math
+	const positions = useMemo(() => {
 		const positions = new Float32Array(5000 * 3);
 		for (let i = 0; i < positions.length; i++) {
 			positions[i] = (Math.random() - 0.5) * 2.4;
@@ -27,7 +26,7 @@ function Stars(props) {
 		<group rotation={[0, 0, Math.PI / 4]}>
 			<Points
 				ref={ref}
-				positions={sphere}
+				positions={positions}
 				stride={3}
 				frustumCulled
 				{...props}
@@ -51,7 +50,7 @@ function StarsCanvas() {
 		setMounted(true);
 	}, []);
 
-	// Prevent SSR issues by only rendering on client
+	// Don't render on server
 	if (!mounted) {
 		return <div className="w-full h-auto absolute inset-0 z-[-1]" />;
 	}
@@ -61,15 +60,10 @@ function StarsCanvas() {
 			<Canvas
 				camera={{ position: [0, 0, 1] }}
 				dpr={[1, 2]}
-				gl={{
-					outputColorSpace: THREE.SRGBColorSpace,
-					alpha: false
-				}}
 			>
 				<Suspense fallback={<CanvasLoader />}>
 					<Stars />
 				</Suspense>
-				<Preload all />
 			</Canvas>
 		</div>
 	);
