@@ -201,4 +201,4 @@ const EarthCanvas = ({ isMobile }) => {
 const PlayerCanvas = () => null;
 
 // Update the export to use the new keyboard component
-export { ComputersCanvas, SkillsKeyboardCanvas as EarthCanvas, StarsCanvas, PlayerCanvas };
+export { ComputersCanvas, EarthCanvas, StarsCanvas, PlayerCanvas };
