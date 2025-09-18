@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import Lottie from "lottie-react";
-
-// Create all components inline - Lottie for coding, CSS for others
+// NO EXTERNAL DEPENDENCIES - Pure CSS/React only to avoid all conflicts
 const StarsCanvas = () => (
   <div className="w-full h-auto absolute inset-0 z-[-1] bg-gradient-to-br from-purple-900 via-blue-900 to-black">
     <div className="absolute inset-0">
@@ -41,29 +38,28 @@ const EarthCanvas = ({ isMobile }) => (
   </div>
 );
 
-const ComputersCanvas = ({ isMobile }) => {
-  const [animationData, setAnimationData] = useState(null);
-
-  useEffect(() => {
-    fetch("/animations/coding.json")
-      .then((res) => res.json())
-      .then((data) => setAnimationData(data))
-      .catch((err) => console.error("Error loading Lottie animation:", err));
-  }, []);
-
-  if (!animationData) return <div className="text-white">Loading...</div>;
-
-  return (
-    <div
-      className="flex justify-center items-center"
-      style={{
-        width: isMobile ? "400px" : "700px",
-        height: isMobile ? "400px" : "700px",
-      }}
-    >
-      <Lottie animationData={animationData} loop={true} />
+const ComputersCanvas = ({ isMobile }) => (
+  <div
+    className="flex justify-center items-center"
+    style={{
+      width: isMobile ? "400px" : "700px",
+      height: isMobile ? "400px" : "700px",
+    }}
+  >
+    <div className="text-center">
+      <div className="text-8xl mb-6 animate-bounce">💻</div>
+      <div className="text-3xl text-purple-400 font-mono mb-4 animate-pulse">{"< Coding />"}</div>
+      <div className="flex justify-center space-x-3 mb-4">
+        <div className="w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
+        <div className="w-4 h-4 bg-yellow-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+        <div className="w-4 h-4 bg-red-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+      </div>
+      <div className="text-gray-300 animate-pulse" style={{animationDelay: '2s'}}>Full Stack Developer</div>
     </div>
-  );
-};
+  </div>
+);
 
-export { ComputersCanvas, EarthCanvas, StarsCanvas };
+// Add PlayerCanvas as null to prevent import errors
+const PlayerCanvas = () => null;
+
+export { ComputersCanvas, EarthCanvas, StarsCanvas, PlayerCanvas };
