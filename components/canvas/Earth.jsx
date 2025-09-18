@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useRef, useState } from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
 // ✅ Import Spline dynamically (no SSR)
@@ -8,17 +8,13 @@ const Spline = dynamic(() => import("@splinetool/react-spline"), {
 });
 
 function Earth({ isMobile }) {
-  const splineContainer = useRef(null);
   const [splineApp, setSplineApp] = useState(null);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Spline
-        ref={splineContainer}
-        scene="/models/planet/untitled3.spline"
-        onLoad={(app) => setSplineApp(app)}
-      />
-    </Suspense>
+    <Spline
+      scene="/models/planet/untitled3.spline"
+      onLoad={(app) => setSplineApp(app)}
+    />
   );
 }
 
