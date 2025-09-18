@@ -2,8 +2,9 @@
 import React, { Suspense, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
+// ✅ Import Spline dynamically (no SSR)
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false, // 🚀 disables SSR for Spline
+  ssr: false,
 });
 
 function Earth({ isMobile }) {
