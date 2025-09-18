@@ -1,23 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-
-// ✅ Import Spline dynamically (no SSR)
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false,
-});
-
+import React, { Suspense, useRef, useState } from "react";
+import Spline from "@splinetool/react-spline";
 function Earth({ isMobile }) {
+  const splineContainer = useRef(null);
   const [splineApp, setSplineApp] = useState(null);
-
   return (
-    <Spline
-      scene="/models/planet/untitled3.spline"
-      onLoad={(app) => setSplineApp(app)}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Spline
+        ref={splineContainer}
+        scene="/models/planet/untitled3.spline" // 👈 replace with your .spline file
+        onLoad={(app) => setSplineApp(app)}
+      />
+    </Suspense>
   );
 }
-
 function EarthCanvas({ isMobile }) {
   return (
     <div className="cursor-pointer w-full h-full">
@@ -25,5 +21,4 @@ function EarthCanvas({ isMobile }) {
     </div>
   );
 }
-
 export default EarthCanvas;
