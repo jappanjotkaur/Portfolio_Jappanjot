@@ -4,6 +4,7 @@
 // import EarthCanvas from "./Earth";
 // import PlayerCanvas from "./Player";
 
+
 // Create all components inline with pure CSS/React
 const StarsCanvas = () => (
   <div className="w-full h-auto absolute inset-0 z-[-1] bg-gradient-to-br from-purple-900 via-blue-900 to-black">
