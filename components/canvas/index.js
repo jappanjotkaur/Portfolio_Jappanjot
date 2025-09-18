@@ -23,37 +23,36 @@ const StarsCanvas = () => (
   </div>
 );
 
-const SkillsKeyboardCanvas = ({ isMobile }) => {
-  // Define skills keyboard layout with icons and colors
+const EarthCanvas = ({ isMobile }) => {
   const skillRows = [
     [
-      { skill: 'JS', color: 'from-yellow-400 to-yellow-600', bgColor: 'bg-yellow-500' },
-      { skill: 'TS', color: 'from-blue-400 to-blue-600', bgColor: 'bg-blue-500' },
-      { skill: 'React', color: 'from-cyan-400 to-cyan-600', bgColor: 'bg-cyan-500' },
-      { skill: 'Node', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
-      { skill: 'Python', color: 'from-yellow-300 to-blue-500', bgColor: 'bg-yellow-400' },
-      { skill: 'Java', color: 'from-red-400 to-orange-500', bgColor: 'bg-red-500' },
+      { skill: 'JS', color: 'from-yellow-400 to-yellow-600' },
+      { skill: 'TS', color: 'from-blue-400 to-blue-600' },
+      { skill: 'React', color: 'from-cyan-400 to-cyan-600' },
+      { skill: 'Node', color: 'from-green-400 to-green-600' },
+      { skill: 'Python', color: 'from-yellow-300 to-blue-500' },
+      { skill: 'Java', color: 'from-red-400 to-orange-500' },
     ],
     [
-      { skill: 'HTML5', color: 'from-orange-400 to-red-500', bgColor: 'bg-orange-500' },
-      { skill: 'CSS3', color: 'from-blue-400 to-blue-600', bgColor: 'bg-blue-500' },
-      { skill: 'Git', color: 'from-orange-500 to-red-600', bgColor: 'bg-orange-600' },
-      { skill: 'GitHub', color: 'from-gray-600 to-gray-800', bgColor: 'bg-gray-700' },
-      { skill: 'Linux', color: 'from-yellow-400 to-orange-500', bgColor: 'bg-yellow-500' },
-      { skill: 'Docker', color: 'from-blue-400 to-cyan-500', bgColor: 'bg-blue-500' },
+      { skill: 'HTML5', color: 'from-orange-400 to-red-500' },
+      { skill: 'CSS3', color: 'from-blue-400 to-blue-600' },
+      { skill: 'Git', color: 'from-orange-500 to-red-600' },
+      { skill: 'GitHub', color: 'from-gray-600 to-gray-800' },
+      { skill: 'Linux', color: 'from-yellow-400 to-orange-500' },
+      { skill: 'Docker', color: 'from-blue-400 to-cyan-500' },
     ],
     [
-      { skill: 'AWS', color: 'from-yellow-400 to-orange-500', bgColor: 'bg-yellow-500' },
-      { skill: 'MongoDB', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
-      { skill: 'MySQL', color: 'from-blue-400 to-orange-400', bgColor: 'bg-blue-500' },
-      { skill: 'Redis', color: 'from-red-500 to-red-700', bgColor: 'bg-red-600' },
-      { skill: 'Firebase', color: 'from-yellow-400 to-orange-600', bgColor: 'bg-yellow-500' },
+      { skill: 'AWS', color: 'from-yellow-400 to-orange-500' },
+      { skill: 'MongoDB', color: 'from-green-400 to-green-600' },
+      { skill: 'MySQL', color: 'from-blue-400 to-orange-400' },
+      { skill: 'Redis', color: 'from-red-500 to-red-700' },
+      { skill: 'Firebase', color: 'from-yellow-400 to-orange-600' },
     ],
     [
-      { skill: 'NextJS', color: 'from-gray-800 to-black', bgColor: 'bg-gray-800' },
-      { skill: 'Vue', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
-      { skill: 'GraphQL', color: 'from-pink-400 to-purple-500', bgColor: 'bg-pink-500' },
-      { skill: 'Express', color: 'from-gray-600 to-gray-800', bgColor: 'bg-gray-700' },
+      { skill: 'NextJS', color: 'from-gray-800 to-black' },
+      { skill: 'Vue', color: 'from-green-400 to-green-600' },
+      { skill: 'GraphQL', color: 'from-pink-400 to-purple-500' },
+      { skill: 'Express', color: 'from-gray-600 to-gray-800' },
     ]
   ];
 
@@ -68,22 +67,20 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
           transformStyle: 'preserve-3d'
         }}
       >
-        {/* Keyboard Base */}
         <div 
           className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl shadow-2xl"
           style={{
-            width: `${isMobile ? '320px' : '480px'}`,
-            height: `${isMobile ? '200px' : '280px'}`,
+            width: isMobile ? '320px' : '480px',
+            height: isMobile ? '200px' : '280px',
             transform: 'translateZ(-20px)',
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(139, 92, 246, 0.2)'
           }}
         />
 
-        {/* Floating Particles */}
         {[...Array(12)].map((_, i) => (
           <div
-            key={`particle-${i}`}
-            className="absolute bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-float"
+            key={i}
+            className="absolute bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -95,16 +92,15 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
           />
         ))}
 
-        {/* Skill Keys */}
         <div 
           className="relative p-6 space-y-3"
-          style={{ width: `${isMobile ? '320px' : '480px'}` }}
+          style={{ width: isMobile ? '320px' : '480px' }}
         >
           {skillRows.map((row, rowIndex) => (
-            <div key={`row-${rowIndex}`} className="flex justify-center gap-2">
+            <div key={rowIndex} className="flex justify-center gap-2">
               {row.map((skillData, keyIndex) => (
                 <div
-                  key={`${rowIndex}-${keyIndex}`}
+                  key={keyIndex}
                   className={`
                     relative group cursor-pointer transform-gpu transition-all duration-300 ease-out
                     hover:scale-110 hover:-translate-y-2 hover:rotate-1
@@ -120,16 +116,7 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1)',
                     animationDelay: `${(rowIndex * row.length + keyIndex) * 0.1}s`
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'translateZ(20px) scale(1.1) rotateX(-10deg)';
-                    e.target.style.boxShadow = `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px ${skillData.bgColor.replace('bg-', 'rgba(').replace('-500', ', 0.4).replace('-600', ', 0.4).replace('-400', ', 0.4).replace('-700', ', 0.4).replace('-800', ', 0.4)')}`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'translateZ(10px)';
-                    e.target.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1)';
-                  }}
                 >
-                  {/* Key Top */}
                   <div 
                     className={`
                       absolute inset-0 bg-gradient-to-br ${skillData.color} rounded-lg
@@ -143,7 +130,6 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
                     </span>
                   </div>
 
-                  {/* Hover Glow Effect */}
                   <div 
                     className={`
                       absolute -inset-2 bg-gradient-to-r ${skillData.color} rounded-xl 
@@ -152,7 +138,6 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
                     style={{ transform: 'translateZ(-5px)' }}
                   />
 
-                  {/* Key Press Animation */}
                   <div 
                     className="absolute inset-0 bg-white rounded-lg opacity-0 group-active:opacity-20 transition-opacity duration-75"
                     style={{ transform: 'translateZ(3px)' }}
@@ -162,9 +147,7 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
             </div>
           ))}
 
-          {/* Special Keys */}
           <div className="flex justify-center gap-4 mt-4">
-            {/* Spacebar */}
             <div
               className={`
                 relative group cursor-pointer transform-gpu transition-all duration-300 ease-out
@@ -180,14 +163,6 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
                 transform: 'translateZ(10px)',
                 boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.2)',
               }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateZ(20px) scale(1.05)';
-                e.target.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateZ(10px)';
-                e.target.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.2)';
-              }}
             >
               <span>CONNECT</span>
               <div className="absolute -inset-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse" />
@@ -195,7 +170,6 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
           </div>
         </div>
 
-        {/* Ambient Light Effects */}
         <div 
           className="absolute -inset-8 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10 rounded-3xl animate-pulse"
           style={{ 
@@ -204,10 +178,9 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
           }}
         />
 
-        {/* Data Streams */}
         {[...Array(6)].map((_, i) => (
           <div
-            key={`stream-${i}`}
+            key={i}
             className="absolute w-px bg-gradient-to-t from-transparent via-purple-400 to-transparent animate-pulse opacity-60"
             style={{
               height: `${20 + Math.random() * 40}px`,
@@ -220,34 +193,6 @@ const SkillsKeyboardCanvas = ({ isMobile }) => {
           />
         ))}
       </div>
-
-      {/* Custom Styles */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-8px) translateX(2px); }
-          50% { transform: translateY(-15px) translateX(4px); }
-          75% { transform: translateY(-8px) translateX(2px); }
-        }
-        
-        @keyframes keyPress {
-          0% { transform: translateZ(10px) scale(1); }
-          50% { transform: translateZ(5px) scale(0.98); }
-          100% { transform: translateZ(10px) scale(1); }
-        }
-        
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
-        
-        .key-press {
-          animation: keyPress 0.15s ease-in-out;
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-      `}</style>
     </div>
   );
 };
