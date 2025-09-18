@@ -1,12 +1,14 @@
-// Enable safe components (Lottie animations and Spline)
+// Enable safe components (Lottie animations)
 import ComputersCanvas from "./Computers";
+
+// Import your real Earth component
 import EarthCanvas from "./Earth";
 
 // Temporarily disable components that might cause Three.js conflicts
 // import StarsCanvas from "./Stars";
 // import PlayerCanvas from "./Player";
 
-// Create simple working replacements for problematic components
+// Simple working replacements for problematic components
 const StarsCanvas = () => (
   <div className="w-full h-auto absolute inset-0 z-[-1] bg-gradient-to-br from-purple-900 via-blue-900 to-black">
     <div className="absolute inset-0">
@@ -17,8 +19,8 @@ const StarsCanvas = () => (
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            width: '2px',
-            height: '2px',
+            width: "2px",
+            height: "2px",
             animationDelay: `${Math.random() * 3}s`,
             opacity: Math.random() * 0.8 + 0.2,
           }}
