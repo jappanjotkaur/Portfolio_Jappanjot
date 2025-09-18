@@ -1,4 +1,4 @@
-// Enable safe components (Lottie and Spline - no Three.js conflicts)
+// Enable safe components (Lottie animations and Spline)
 import ComputersCanvas from "./Computers";
 import EarthCanvas from "./Earth";
 
