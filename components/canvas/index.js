@@ -1,9 +1,9 @@
-// Enable safe components (Lottie animations)
+// Enable safe components (Lottie and Spline - no Three.js conflicts)
 import ComputersCanvas from "./Computers";
+import EarthCanvas from "./Earth";
 
 // Temporarily disable components that might cause Three.js conflicts
 // import StarsCanvas from "./Stars";
-// import EarthCanvas from "./Earth";
 // import PlayerCanvas from "./Player";
 
 // Create simple working replacements for problematic components
@@ -25,12 +25,6 @@ const StarsCanvas = () => (
         />
       ))}
     </div>
-  </div>
-);
-
-const EarthCanvas = () => (
-  <div className="w-64 h-64 bg-blue-500 rounded-full mx-auto flex items-center justify-center shadow-lg">
-    <span className="text-white text-4xl">🌍</span>
   </div>
 );
 
