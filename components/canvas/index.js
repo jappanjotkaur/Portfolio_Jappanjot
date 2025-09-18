@@ -23,254 +23,229 @@ const StarsCanvas = () => (
   </div>
 );
 
-const EarthCanvas = ({ isMobile }) => {
-  const earthSize = isMobile ? '280px' : '420px';
-  const containerSize = isMobile ? '350px' : '500px';
-  
+const SkillsKeyboardCanvas = ({ isMobile }) => {
+  // Define skills keyboard layout with icons and colors
+  const skillRows = [
+    [
+      { skill: 'JS', color: 'from-yellow-400 to-yellow-600', bgColor: 'bg-yellow-500' },
+      { skill: 'TS', color: 'from-blue-400 to-blue-600', bgColor: 'bg-blue-500' },
+      { skill: 'React', color: 'from-cyan-400 to-cyan-600', bgColor: 'bg-cyan-500' },
+      { skill: 'Node', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
+      { skill: 'Python', color: 'from-yellow-300 to-blue-500', bgColor: 'bg-yellow-400' },
+      { skill: 'Java', color: 'from-red-400 to-orange-500', bgColor: 'bg-red-500' },
+    ],
+    [
+      { skill: 'HTML5', color: 'from-orange-400 to-red-500', bgColor: 'bg-orange-500' },
+      { skill: 'CSS3', color: 'from-blue-400 to-blue-600', bgColor: 'bg-blue-500' },
+      { skill: 'Git', color: 'from-orange-500 to-red-600', bgColor: 'bg-orange-600' },
+      { skill: 'GitHub', color: 'from-gray-600 to-gray-800', bgColor: 'bg-gray-700' },
+      { skill: 'Linux', color: 'from-yellow-400 to-orange-500', bgColor: 'bg-yellow-500' },
+      { skill: 'Docker', color: 'from-blue-400 to-cyan-500', bgColor: 'bg-blue-500' },
+    ],
+    [
+      { skill: 'AWS', color: 'from-yellow-400 to-orange-500', bgColor: 'bg-yellow-500' },
+      { skill: 'MongoDB', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
+      { skill: 'MySQL', color: 'from-blue-400 to-orange-400', bgColor: 'bg-blue-500' },
+      { skill: 'Redis', color: 'from-red-500 to-red-700', bgColor: 'bg-red-600' },
+      { skill: 'Firebase', color: 'from-yellow-400 to-orange-600', bgColor: 'bg-yellow-500' },
+    ],
+    [
+      { skill: 'NextJS', color: 'from-gray-800 to-black', bgColor: 'bg-gray-800' },
+      { skill: 'Vue', color: 'from-green-400 to-green-600', bgColor: 'bg-green-500' },
+      { skill: 'GraphQL', color: 'from-pink-400 to-purple-500', bgColor: 'bg-pink-500' },
+      { skill: 'Express', color: 'from-gray-600 to-gray-800', bgColor: 'bg-gray-700' },
+    ]
+  ];
+
+  const keyboardScale = isMobile ? 0.7 : 1;
+
   return (
     <div className="w-full h-full flex items-center justify-center relative overflow-hidden">
-      {/* Main container with orbital space */}
       <div 
-        className="relative flex items-center justify-center"
+        className="relative transform-gpu transition-all duration-1000 ease-in-out hover:scale-105"
         style={{
-          width: containerSize,
-          height: containerSize,
+          transform: `scale(${keyboardScale}) perspective(1000px) rotateX(25deg) rotateY(-10deg)`,
+          transformStyle: 'preserve-3d'
         }}
       >
-        {/* Cosmic background particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Keyboard Base */}
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl shadow-2xl"
+          style={{
+            width: `${isMobile ? '320px' : '480px'}`,
+            height: `${isMobile ? '200px' : '280px'}`,
+            transform: 'translateZ(-20px)',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(139, 92, 246, 0.2)'
+          }}
+        />
+
+        {/* Floating Particles */}
+        {[...Array(12)].map((_, i) => (
           <div
-            key={`cosmic-${i}`}
-            className="absolute bg-gradient-to-r from-purple-300 to-pink-300 rounded-full animate-pulse"
+            key={`particle-${i}`}
+            className="absolute bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 4}s`,
-              opacity: Math.random() * 0.6 + 0.2,
+              width: `${Math.random() * 4 + 2}px`,
+              height: `${Math.random() * 4 + 2}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              opacity: Math.random() * 0.6 + 0.3,
             }}
           />
         ))}
 
-        {/* Enhanced Orbital rings with gradient */}
+        {/* Skill Keys */}
         <div 
-          className="absolute inset-0 rounded-full opacity-30 animate-spin border-2"
-          style={{ 
-            animationDuration: '20s',
-            borderImage: 'linear-gradient(45deg, #8b5cf6, #06b6d4, #8b5cf6) 1'
-          }} 
-        />
-        <div 
-          className="absolute inset-8 rounded-full opacity-20 animate-spin border"
-          style={{ 
-            animationDuration: '35s', 
-            animationDirection: 'reverse',
-            borderColor: '#a855f7'
-          }} 
-        />
-        <div 
-          className="absolute inset-12 rounded-full opacity-15 animate-spin border"
-          style={{ 
-            animationDuration: '50s',
-            borderColor: '#06b6d4'
-          }} 
-        />
-
-        {/* Communication satellites with enhanced design */}
-        <div className="absolute inset-0">
-          {/* Main satellite */}
-          <div 
-            className="absolute animate-spin"
-            style={{
-              left: '50%',
-              top: '8%',
-              marginLeft: '-8px',
-              marginTop: '-8px',
-              animationDuration: '15s',
-              transformOrigin: '8px calc(42vh - 8vh)',
-            }}
-          >
-            <div className="relative w-4 h-4 bg-gradient-to-br from-purple-300 to-pink-400 rounded-full shadow-lg">
-              <div className="absolute -inset-2 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full animate-ping opacity-40" />
-              <div className="absolute inset-1 bg-white rounded-full opacity-80" />
-            </div>
-          </div>
-          
-          {/* Secondary satellite */}
-          <div 
-            className="absolute animate-spin"
-            style={{
-              left: '88%',
-              top: '50%',
-              marginLeft: '-6px',
-              marginTop: '-6px',
-              animationDuration: '25s',
-              animationDirection: 'reverse',
-              transformOrigin: 'calc(-38vw + 6px) 6px',
-            }}
-          >
-            <div className="relative w-3 h-3 bg-gradient-to-br from-cyan-300 to-blue-400 rounded-full shadow-lg">
-              <div className="absolute -inset-1 bg-gradient-to-br from-cyan-200 to-blue-200 rounded-full animate-ping opacity-50" />
-            </div>
-          </div>
-
-          {/* Third satellite */}
-          <div 
-            className="absolute animate-spin"
-            style={{
-              left: '15%',
-              top: '70%',
-              marginLeft: '-5px',
-              marginTop: '-5px',
-              animationDuration: '18s',
-              transformOrigin: 'calc(35vw - 5px) calc(-20vh + 5px)',
-            }}
-          >
-            <div className="relative w-2.5 h-2.5 bg-gradient-to-br from-violet-300 to-purple-400 rounded-full shadow-lg">
-              <div className="absolute -inset-1 bg-gradient-to-br from-violet-200 to-purple-200 rounded-full animate-ping opacity-45" />
-            </div>
-          </div>
-        </div>
-
-        {/* Main Earth with sophisticated styling */}
-        <div 
-          className="relative rounded-full animate-spin shadow-2xl"
-          style={{
-            width: earthSize,
-            height: earthSize,
-            animationDuration: '30s',
-            background: 'radial-gradient(circle at 30% 30%, #1e40af, #1e3a8a, #312e81, #1e1b4b)',
-            boxShadow: `
-              0 0 80px rgba(139, 92, 246, 0.4),
-              0 0 120px rgba(139, 92, 246, 0.2),
-              inset 0 0 80px rgba(0, 0, 0, 0.3)
-            `,
-          }}
+          className="relative p-6 space-y-3"
+          style={{ width: `${isMobile ? '320px' : '480px'}` }}
         >
-          {/* Enhanced Atmosphere layers */}
-          <div 
-            className="absolute -inset-4 rounded-full opacity-25 animate-pulse"
-            style={{ 
-              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.6), rgba(6, 182, 212, 0.4), transparent 70%)',
-              animationDuration: '6s' 
-            }}
-          />
-          <div 
-            className="absolute -inset-6 rounded-full opacity-15 animate-pulse"
-            style={{ 
-              background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4), rgba(59, 130, 246, 0.3), transparent 60%)',
-              animationDuration: '8s',
-              animationDelay: '1s'
-            }}
-          />
-          
-          {/* Continental masses with purple/blue theme */}
-          <div 
-            className="absolute inset-6 rounded-full opacity-60"
-            style={{ 
-              background: 'radial-gradient(ellipse 60% 80% at 40% 30%, #059669, #047857, transparent 70%)'
-            }} 
-          />
-          
-          {/* Animated continents with matching colors */}
-          <div className="absolute top-12 left-12 w-8 h-6 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-70 animate-pulse" 
-               style={{ animationDelay: '0.5s' }} />
-          <div className="absolute bottom-16 right-16 w-12 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full opacity-60 animate-pulse" 
-               style={{ animationDelay: '1s' }} />
-          <div className="absolute top-20 right-20 w-6 h-4 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full opacity-65 animate-pulse" 
-               style={{ animationDelay: '1.5s' }} />
-          <div className="absolute top-1/2 left-8 w-4 h-6 bg-gradient-to-br from-emerald-300 to-green-400 rounded-full opacity-50 animate-pulse" 
-               style={{ animationDelay: '2s' }} />
-          <div className="absolute bottom-12 left-1/2 w-10 h-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-full opacity-55 animate-pulse" 
-               style={{ animationDelay: '2.5s' }} />
-          
-          {/* Enhanced Clouds with gradient */}
-          <div className="absolute top-8 left-16 w-12 h-6 bg-gradient-to-r from-white to-purple-100 rounded-full opacity-40 animate-float" />
-          <div className="absolute bottom-20 right-12 w-10 h-5 bg-gradient-to-r from-white to-blue-100 rounded-full opacity-35 animate-float" 
-               style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 right-6 w-8 h-4 bg-gradient-to-r from-white to-cyan-100 rounded-full opacity-30 animate-float" 
-               style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/3 left-1/3 w-6 h-3 bg-gradient-to-r from-white to-purple-50 rounded-full opacity-25 animate-float" 
-               style={{ animationDelay: '3s' }} />
-          
-          {/* City lights with purple/pink theme */}
-          <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-purple-300 rounded-full animate-twinkle opacity-80 shadow-lg shadow-purple-300" />
-          <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-pink-300 rounded-full animate-twinkle opacity-70 shadow-lg shadow-pink-300" 
-               style={{ animationDelay: '1s' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-violet-300 rounded-full animate-twinkle opacity-75 shadow-lg shadow-violet-300" 
-               style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/4 left-1/3 w-1 h-1 bg-purple-200 rounded-full animate-twinkle opacity-60" 
-               style={{ animationDelay: '1.5s' }} />
-          
-          {/* Aurora-like effects */}
-          <div className="absolute top-4 left-1/4 w-16 h-2 bg-gradient-to-r from-transparent via-purple-300 to-transparent rounded-full opacity-30 animate-pulse"
-               style={{ animationDelay: '0.5s', animationDuration: '4s' }} />
-          <div className="absolute bottom-6 right-1/4 w-12 h-1.5 bg-gradient-to-r from-transparent via-cyan-300 to-transparent rounded-full opacity-25 animate-pulse"
-               style={{ animationDelay: '2s', animationDuration: '5s' }} />
-        </div>
+          {skillRows.map((row, rowIndex) => (
+            <div key={`row-${rowIndex}`} className="flex justify-center gap-2">
+              {row.map((skillData, keyIndex) => (
+                <div
+                  key={`${rowIndex}-${keyIndex}`}
+                  className={`
+                    relative group cursor-pointer transform-gpu transition-all duration-300 ease-out
+                    hover:scale-110 hover:-translate-y-2 hover:rotate-1
+                    ${isMobile ? 'w-10 h-10' : 'w-14 h-14'}
+                    bg-gradient-to-br ${skillData.color}
+                    rounded-lg shadow-lg
+                    flex items-center justify-center
+                    font-bold text-white text-xs
+                    border border-gray-600
+                  `}
+                  style={{
+                    transform: 'translateZ(10px)',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1)',
+                    animationDelay: `${(rowIndex * row.length + keyIndex) * 0.1}s`
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateZ(20px) scale(1.1) rotateX(-10deg)';
+                    e.target.style.boxShadow = `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 30px ${skillData.bgColor.replace('bg-', 'rgba(').replace('-500', ', 0.4).replace('-600', ', 0.4).replace('-400', ', 0.4).replace('-700', ', 0.4).replace('-800', ', 0.4)')}`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateZ(10px)';
+                    e.target.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1)';
+                  }}
+                >
+                  {/* Key Top */}
+                  <div 
+                    className={`
+                      absolute inset-0 bg-gradient-to-br ${skillData.color} rounded-lg
+                      flex items-center justify-center
+                      transition-all duration-300
+                    `}
+                    style={{ transform: 'translateZ(2px)' }}
+                  >
+                    <span className={`${isMobile ? 'text-xs' : 'text-sm'} font-bold drop-shadow-lg`}>
+                      {skillData.skill}
+                    </span>
+                  </div>
 
-        {/* Enhanced Communication waves matching theme */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={`wave-${i}`}
-              className="absolute rounded-full opacity-20 animate-ping border-2"
-              style={{
-                width: `${140 + i * 35}%`,
-                height: `${140 + i * 35}%`,
-                animationDelay: `${i * 0.6}s`,
-                animationDuration: '4s',
-                borderColor: i % 2 === 0 ? '#8b5cf6' : '#06b6d4',
-              }}
-            />
+                  {/* Hover Glow Effect */}
+                  <div 
+                    className={`
+                      absolute -inset-2 bg-gradient-to-r ${skillData.color} rounded-xl 
+                      opacity-0 group-hover:opacity-30 transition-opacity duration-300 animate-pulse
+                    `}
+                    style={{ transform: 'translateZ(-5px)' }}
+                  />
+
+                  {/* Key Press Animation */}
+                  <div 
+                    className="absolute inset-0 bg-white rounded-lg opacity-0 group-active:opacity-20 transition-opacity duration-75"
+                    style={{ transform: 'translateZ(3px)' }}
+                  />
+                </div>
+              ))}
+            </div>
           ))}
+
+          {/* Special Keys */}
+          <div className="flex justify-center gap-4 mt-4">
+            {/* Spacebar */}
+            <div
+              className={`
+                relative group cursor-pointer transform-gpu transition-all duration-300 ease-out
+                hover:scale-105 hover:-translate-y-1
+                ${isMobile ? 'w-32 h-8' : 'w-48 h-12'}
+                bg-gradient-to-br from-purple-500 to-purple-700
+                rounded-lg shadow-lg
+                flex items-center justify-center
+                font-bold text-white text-sm
+                border border-gray-600
+              `}
+              style={{
+                transform: 'translateZ(10px)',
+                boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateZ(20px) scale(1.05)';
+                e.target.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.4), 0 0 40px rgba(139, 92, 246, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateZ(10px)';
+                e.target.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.2)';
+              }}
+            >
+              <span>CONNECT</span>
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse" />
+            </div>
+          </div>
         </div>
 
-        {/* Data streams */}
+        {/* Ambient Light Effects */}
+        <div 
+          className="absolute -inset-8 bg-gradient-to-r from-purple-500/10 via-transparent to-cyan-500/10 rounded-3xl animate-pulse"
+          style={{ 
+            animationDuration: '4s',
+            transform: 'translateZ(-30px)' 
+          }}
+        />
+
+        {/* Data Streams */}
         {[...Array(6)].map((_, i) => (
           <div
             key={`stream-${i}`}
-            className="absolute w-px h-8 bg-gradient-to-t from-transparent via-purple-300 to-transparent animate-pulse"
+            className="absolute w-px bg-gradient-to-t from-transparent via-purple-400 to-transparent animate-pulse opacity-60"
             style={{
-              left: `${20 + i * 12}%`,
-              top: `${10 + Math.sin(i) * 20}%`,
-              animationDelay: `${i * 0.4}s`,
-              opacity: 0.6,
-              transform: `rotate(${i * 15}deg)`,
+              height: `${20 + Math.random() * 40}px`,
+              left: `${10 + i * 15}%`,
+              top: `${-10 - Math.random() * 20}px`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: '2s',
+              transform: 'translateZ(5px)',
             }}
           />
         ))}
       </div>
 
-      {/* Custom animations styles */}
+      {/* Custom Styles */}
       <style jsx>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-          25% { transform: translateY(-4px) translateX(2px) rotate(1deg); }
-          50% { transform: translateY(-8px) translateX(4px) rotate(0deg); }
-          75% { transform: translateY(-4px) translateX(2px) rotate(-1deg); }
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          25% { transform: translateY(-8px) translateX(2px); }
+          50% { transform: translateY(-15px) translateX(4px); }
+          75% { transform: translateY(-8px) translateX(2px); }
         }
         
-        @keyframes twinkle {
-          0%, 100% { 
-            opacity: 0.8; 
-            transform: scale(1); 
-            box-shadow: 0 0 10px currentColor;
-          }
-          50% { 
-            opacity: 0.3; 
-            transform: scale(0.7);
-            box-shadow: 0 0 20px currentColor;
-          }
+        @keyframes keyPress {
+          0% { transform: translateZ(10px) scale(1); }
+          50% { transform: translateZ(5px) scale(0.98); }
+          100% { transform: translateZ(10px) scale(1); }
         }
         
         .animate-float {
-          animation: float 6s ease-in-out infinite;
+          animation: float 4s ease-in-out infinite;
         }
         
-        .animate-twinkle {
-          animation: twinkle 3s ease-in-out infinite;
+        .key-press {
+          animation: keyPress 0.15s ease-in-out;
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
         }
       `}</style>
     </div>
@@ -280,4 +255,5 @@ const EarthCanvas = ({ isMobile }) => {
 // Add PlayerCanvas as null to prevent import errors
 const PlayerCanvas = () => null;
 
-export { ComputersCanvas, EarthCanvas, StarsCanvas, PlayerCanvas };
+// Update the export to use the new keyboard component
+export { ComputersCanvas, SkillsKeyboardCanvas as EarthCanvas, StarsCanvas, PlayerCanvas };
