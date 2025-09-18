@@ -1,11 +1,7 @@
-// COMPLETE ISOLATION: No imports at all to eliminate Three.js conflicts
-// import ComputersCanvas from "./Computers";
-// import StarsCanvas from "./Stars";
-// import EarthCanvas from "./Earth";
-// import PlayerCanvas from "./Player";
+import { useState, useEffect } from "react";
+import Lottie from "lottie-react";
 
-
-// Create all components inline with pure CSS/React
+// Create components - Lottie for coding, CSS for stars only
 const StarsCanvas = () => (
   <div className="w-full h-auto absolute inset-0 z-[-1] bg-gradient-to-br from-purple-900 via-blue-900 to-black">
     <div className="absolute inset-0">
@@ -27,52 +23,29 @@ const StarsCanvas = () => (
   </div>
 );
 
-const EarthCanvas = ({ isMobile }) => (
-  <div className="w-full h-full flex items-center justify-center">
-    <div 
-      className="relative bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 rounded-full shadow-2xl animate-spin"
+const ComputersCanvas = ({ isMobile }) => {
+  const [animationData, setAnimationData] = useState(null);
+
+  useEffect(() => {
+    fetch("/animations/coding.json")
+      .then((res) => res.json())
+      .then((data) => setAnimationData(data))
+      .catch((err) => console.error("Error loading Lottie animation:", err));
+  }, []);
+
+  if (!animationData) return <div className="text-white">Loading...</div>;
+
+  return (
+    <div
+      className="flex justify-center items-center"
       style={{
-        width: isMobile ? '200px' : '300px',
-        height: isMobile ? '200px' : '300px',
-        animationDuration: '20s'
+        width: isMobile ? "400px" : "700px",
+        height: isMobile ? "400px" : "700px",
       }}
     >
-      <div className="absolute inset-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full opacity-70"></div>
-      <div className="absolute top-8 left-8 w-4 h-4 bg-green-500 rounded-full opacity-80"></div>
-      <div className="absolute bottom-12 right-12 w-6 h-6 bg-green-400 rounded-full opacity-60"></div>
-      <div className="absolute top-16 right-16 w-3 h-3 bg-yellow-400 rounded-full opacity-70"></div>
+      <Lottie animationData={animationData} loop={true} />
     </div>
-  </div>
-);
+  );
+};
 
-const ComputersCanvas = ({ isMobile }) => (
-  <div 
-    className="flex justify-center items-center"
-    style={{
-      width: isMobile ? "400px" : "700px",
-      height: isMobile ? "400px" : "700px",
-    }}
-  >
-    <div className="text-center">
-      <div className="text-8xl mb-6 animate-bounce">💻</div>
-      <div className="text-3xl text-purple-400 font-mono mb-4">{"< Coding />"}</div>
-      <div className="flex justify-center space-x-3 mb-4">
-        <div className="w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
-        <div className="w-4 h-4 bg-yellow-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
-        <div className="w-4 h-4 bg-red-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
-      </div>
-      <div className="text-gray-300">Full Stack Developer</div>
-    </div>
-  </div>
-);
-
-const PlayerCanvas = () => (
-  <div className="w-full h-full flex items-center justify-center">
-    <div className="text-center animate-pulse">
-      <div className="text-8xl mb-4">🎮</div>
-      <p className="text-gray-400 text-xl">Game Controller</p>
-    </div>
-  </div>
-);
-
-export { ComputersCanvas, PlayerCanvas, EarthCanvas, StarsCanvas };
+export { ComputersCanvas, StarsCanvas };
