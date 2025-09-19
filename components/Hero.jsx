@@ -7,7 +7,7 @@ import { heroTexts } from "@/constants";
 
 function Hero({ loading, isMobile }) {
   return (
-    <section className="relative w-full h-[100svh] md:max-h-[800px] max-h-[600px] mx-auto flex items-center pt-24 md:pt-0">
+    <section className="relative w-full h-[100svh] md:max-h-[800px] max-h-[600px] mx-auto flex items-center pt-28 md:pt-0">
       {/* Wrapper with two columns */}
       <div className="w-full max-w-7xl mx-auto paddingX flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left side: intro text */}
