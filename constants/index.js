@@ -242,8 +242,8 @@ const experiences = [
     iconBg: "#E6DEDD",
     date: "June 2025 - August 2025",
     points: [
-      "Assisting in the design and optimization of scalable ML workflows, leveraging automated feature engineering, hyperparameter tuning, and model evaluation metrics to enhance predictive performance across diverse datasets.",
-      "Building a RAG-based GenAI chatbot using LangChain, integrated with LLMs and vector databases, and applying unsupervised learning for real-time anomaly detection in network data.",
+      "Streamlined ML workflows with automated feature engineering, hyperparameter tuning, and advanced evaluation metrics, boosting predictive performance; built and deployed a RAG-based GenAI chatbot using LangChain with fine-tuned LLMs and context-aware quality evaluation.",
+      "Built a production-grade Network Anomaly Detection System with FastAPI and React, leveraging advanced ML models, Docker/Kubernetes deployment, and Prometheus/Grafana monitoring for real-time reliability",
     ],
   },
   {
