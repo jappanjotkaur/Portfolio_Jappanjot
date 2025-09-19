@@ -28,7 +28,7 @@ function Hero({ loading, isMobile }) {
               Hi, I&apos;m
             </span>
             <span
-              className="block text-6xl sm:text-7xl md:text-8xl font-extrabold text-[#eff4f3] mt-2 drop-shadow-xl"
+              className="block text-4xl sm:text-6xl md:text-8xl font-extrabold text-[#eff4f3] mt-2 drop-shadow-xl"
             >
               Jappanjot Kaur
             </span>
