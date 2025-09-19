@@ -45,7 +45,7 @@ const EarthCanvas = ({ isMobile }) => {
 
         {/* Main Image */}
         <img 
-          src="/hero-img.jpg"
+          src="/hero-img.png"
           alt="Skills Illustration"
           className={`
             ${isMobile ? 'w-80 h-80' : 'w-96 h-96'} 
